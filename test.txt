@@ -1,0 +1,36 @@
+#!/bin/bash
+#author: selendra kumar
+#Purpose: learning while loop
+#usage: ./while_loop.sh
+
+current_time=$(date +"%H")
+echo "$current_time"
+
+if [ $current_time -le '12' ]; then
+	echo "good morning"
+elif ["$current_time" ge '12'] && [$current_time -le '16']; then
+	echo "good afternoon"
+else 
+	echo "good night"
+fi
+
+while getopts ":a:b" flag; do
+	case $flag in 
+		a) ab=$OPTARG;;
+		b) bc=$OPTARG;;
+		?) echo "i dont understand this"
+		esac
+done
+
+function backup {
+	echo "enter the file name"
+	read -r myfile
+	if [ -f $myfile ]; then
+		echo "file exists"
+		cp $myfile /tmp/backup.sh
+	else
+		echo "file do not exist"
+	fi
+}
+
+backup 
